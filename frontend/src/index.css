@@ -1,0 +1,127 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --background: #F8FAFC;
+    --secondary-background: #FFFFFF;
+    --sidebar: #FFFFFF;
+    --card: #FFFFFF;
+    --header: #FFFFFF;
+    --border: #E5E7EB;
+    
+    --foreground: #111827;
+    --secondary-foreground: #6B7280;
+    --muted: #94A3B8;
+    
+    --hover-bg: #F1F5F9;
+  }
+
+  .dark {
+    --background: #0F172A;
+    --secondary-background: #111827;
+    --sidebar: #0B1220;
+    --card: #1E293B;
+    --header: #111827;
+    --border: #334155;
+    
+    --foreground: #F8FAFC;
+    --secondary-foreground: #CBD5E1;
+    --muted: #94A3B8;
+    
+    --hover-bg: #1E293B;
+  }
+}
+
+@theme {
+  --color-primary: #6366F1;
+  --color-secondary: #8B5CF6;
+  --color-success: #22C55E;
+  --color-warning: #F59E0B;
+  --color-danger: #EF4444;
+  --color-info: #3B82F6;
+  
+  --color-background: var(--background);
+  --color-secondary-bg: var(--secondary-background);
+  --color-sidebar: var(--sidebar);
+  --color-card: var(--card);
+  --color-header: var(--header);
+  --color-border: var(--border);
+  --color-hover: var(--hover-bg);
+  
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  --radius-lg: 1.5rem; /* 24px */
+  --radius-md: 1.125rem; /* 18px */
+  --radius-sm: 0.875rem; /* 14px */
+}
+
+@layer base {
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+}
+
+/* Custom Minimalist Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #6366F1;
+  border-radius: 999px;
+  transition: background-color 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4F46E5; /* Slightly brighter/darker for hover effect */
+}
+
+/* Dark mode scrollbar */
+.dark ::-webkit-scrollbar-track {
+  background: #111827;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #8B5CF6;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #A78BFA;
+}
+
+/* Hide scrollbar completely if needed, though Lenis relies on native scrollbar visibility for desktop sometimes, 
+   the plan asks for it to be visible only while scrolling. Pure CSS can't easily fade scrollbars after scrolling stops 
+   on all browsers without custom DOM scrollbars, but we can make it sleek. */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
